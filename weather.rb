@@ -1,5 +1,5 @@
 require 'mycroft'
-require 'weather_module'
+require './weather_module'
 
 class Weather < Mycroft::Client
   include WeatherModule
@@ -10,7 +10,7 @@ class Weather < Mycroft::Client
     @cert = ''
     @manifest = './app.json'
     @verified = false
-    Barometer.config = { 1 => [:yahoo, :wunderground] }
+    Barometer.config = { 1 => [:yahoo], 2 => :wunderground }
   end
 
   def connect
@@ -22,16 +22,18 @@ class Weather < Mycroft::Client
     if parsed[:type] == 'APP_MANIFEST_OK' || parsed[:type] == 'APP_MANIFEST_FAIL'
       check_manifest(parsed)
       @verified = true
+      data = {grammar: { name: 'weather', xml: File.read('./grammar.xml')}}
+      query('stt', 'load_grammar', data)
     elsif parsed[:type] == 'MSG_BROADCAST'
       barometer = Barometer.new('14623')
-      weather = barometer.weather
-      grammar = parsed[:data]['content']['grammar']
+      weather = barometer.measure
+      grammar = parsed[:data]['content']
       unless grammar.nil?
-        if grammar['name'] == 'weather'
+        if grammar['grammar'] == 'weather'
           tags = grammar['tags']
-          unless tags['rise_or_set'].nil?
+          if not tags['rise_or_set'].nil?
             sunrise_sunset(weather, tags['day'], tags['rise_or_set'])
-          elsif tags['day'] == 'current'
+          elsif tags['day'] == 'currently'
             current(weather)
           else
             today_tomorrow(weather, tags['day'])
