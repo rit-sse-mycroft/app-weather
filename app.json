@@ -4,13 +4,13 @@
   "displayName": "The Weather Man",
   "instanceId": "weather1",
   "capabilities": {
-    "weather": "0.1"
+    "weather": "0.0.1"
   },
   "API": "0",
   "description": "Tells us the weather",
   "dependencies": {
-    "stt": "0.1",
-    "tts": "0.1",
-    "logger": "1.0"
+    "stt": "0.0.1",
+    "tts": "0.0.1",
+    "logger": "1.0.0"
   }
 }
