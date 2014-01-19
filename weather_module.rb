@@ -10,6 +10,7 @@ module WeatherModule
   end
 
   def today_tomorrow(weather, day)
+    weather = weather.send(day.to_sym)
     condition = weather.condition
     high = weather.high.f
     low = weather.low.f
