@@ -17,11 +17,8 @@ class Weather < Mycroft::Client
     # Your code here
   end
 
-  def on_data(data)
-    parsed = parse_message(data)
+  def on_data(parsed)
     if parsed[:type] == 'APP_MANIFEST_OK' || parsed[:type] == 'APP_MANIFEST_FAIL'
-      check_manifest(parsed)
-      @verified = true
       data = {grammar: { name: 'weather', xml: File.read('./grammar.xml')}}
       query('stt', 'load_grammar', data)
     elsif parsed[:type] == 'MSG_BROADCAST'
