@@ -19,7 +19,7 @@ module WeatherModule
 
   def sunrise_sunset(weather, day, rise_or_set)
     time = weather.send(day.to_sym).sun.send(rise_or_set.to_sym).localtime
-    link = Time.now > sunrise ? 'was' : 'is'
+    link = Time.now > time ? 'was' : 'is'
     send_weather("#{day}, sun#{rise_or_set} #{link} at #{time.strftime('%I:%M %p')}")
   end
 
