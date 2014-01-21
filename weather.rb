@@ -45,7 +45,7 @@ class Weather < Mycroft::Client
   end
 
   def on_end
-    # Your code here
+    broadcast({unloadGrammar: 'weather'})
   end
 end
 
