@@ -36,9 +36,11 @@ class Weather < Mycroft::Client
         end
       end
     elsif parsed[:type] == 'APP_DEPENDENCY'
-      up
-      data = {grammar: { name: 'weather', xml: File.read('./grammar.xml')}}
-      query('stt', 'load_grammar', data)
+      if parsed[:data]['stt']['primary'] == 'up'
+        up
+        data = {grammar: { name: 'weather', xml: File.read('./grammar.xml')}}
+        query('stt', 'load_grammar', data)
+      end
     end
   end
 
