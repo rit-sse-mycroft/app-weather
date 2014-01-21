@@ -5,12 +5,13 @@ class Weather < Mycroft::Client
   include WeatherModule
   attr_accessor :verified
 
-  def initialize
+  def initialize(host, port)
     @key = ''
     @cert = ''
     @manifest = './app.json'
     @verified = false
     Barometer.config = { 1 => [:yahoo], 2 => :wunderground }
+    super
   end
 
   def connect
