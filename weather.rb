@@ -18,10 +18,7 @@ class Weather < Mycroft::Client
   end
 
   def on_data(parsed)
-    if parsed[:type] == 'APP_MANIFEST_OK' || parsed[:type] == 'APP_MANIFEST_FAIL'
-      data = {grammar: { name: 'weather', xml: File.read('./grammar.xml')}}
-      query('stt', 'load_grammar', data)
-    elsif parsed[:type] == 'MSG_BROADCAST'
+    if parsed[:type] == 'MSG_BROADCAST'
       barometer = Barometer.new('14623')
       weather = barometer.measure
       grammar = parsed[:data]['content']
@@ -38,7 +35,9 @@ class Weather < Mycroft::Client
         end
       end
     elsif parsed[:type] == 'APP_DEPENDENCY'
-      # do some stuff
+      up
+      data = {grammar: { name: 'weather', xml: File.read('./grammar.xml')}}
+      query('stt', 'load_grammar', data)
     end
   end
 
