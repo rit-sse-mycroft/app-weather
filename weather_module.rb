@@ -26,6 +26,6 @@ module WeatherModule
   def send_weather(text)
     array = [{phrase: text, delay: 0}]
     content = {text: array, targetSpeaker: "speakers"}
-    query('tts', 'stream', content, ['text2speech'])
+    query('tts', 'stream', content)
   end
 end
