@@ -52,7 +52,7 @@ class Weather < Mycroft::Client
   end
 
   def on_end
-    broadcast({unloadGrammar: 'weather'})
+    query('stt', 'unload_grammar', {grammar: 'weather'})
   end
 end
 
