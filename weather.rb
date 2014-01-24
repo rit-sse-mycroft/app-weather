@@ -38,14 +38,19 @@ class Weather < Mycroft::Client
       end
     elsif parsed[:type] == 'APP_DEPENDENCY'
       if not parsed[:data]['stt'].nil?
-        if parsed[:data]['stt']['stt1'] == 'up' and not @sent_grammar
-          up
-          data = {grammar: { name: 'weather', xml: File.read('./grammar.xml')}}
-          query('stt', 'load_grammar', data)
-          @sent_grammar = true
-        elsif parsed[:data]['stt']['stt1'] == 'down' and @sent_grammar
-          @sent_grammar = false
-          down
+        update_dependencies(parsed[:data])
+        puts "Current status of dependencies"
+        puts @dependencies
+        if not parsed[:data]['stt'].nil?
+          if parsed[:data]['stt']['stt1'] == 'up' and not @sent_grammar
+            up
+            data = {grammar: { name: 'weather', xml: File.read('./grammar.xml')}}
+            query('stt', 'load_grammar', data)
+            @sent_grammar = true
+          elsif parsed[:data]['stt']['stt1'] == 'down' and @sent_grammar
+            @sent_grammar = false
+            down
+          end
         end
       end
     end
@@ -53,6 +58,19 @@ class Weather < Mycroft::Client
 
   def on_end
     query('stt', 'unload_grammar', {grammar: 'weather'})
+  end
+
+  def update_dependencies(deps)
+    deps.each do |capability, instance|
+      instance.each do |appId, status|
+        if @dependencies.has_key?(capability)
+          @dependencies[capability][appId] = status
+        else
+          @dependencies[capability] = {}
+          @dependencies[capability][appId] = status
+        end
+      end
+    end    
   end
 end
 
