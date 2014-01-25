@@ -11,6 +11,7 @@ class Weather < Mycroft::Client
     @manifest = './app.json'
     @verified = false
     @sent_grammar = false
+    @dependencies = {}
     Barometer.config = { 1 => [:yahoo], 2 => :wunderground }
     super
   end
