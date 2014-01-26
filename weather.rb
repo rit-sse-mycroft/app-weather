@@ -60,15 +60,6 @@ class Weather < Mycroft::Client
   def on_end
     query('stt', 'unload_grammar', {grammar: 'weather'})
   end
-
-  def update_dependencies(deps)
-    deps.each do |capability, instance|
-      @dependencies[capability] ||= {}
-      instance.each do |appId, status|
-        @dependencies[capability][appId] = status
-      end
-    end
-  end
 end
 
 Mycroft.start(Weather)
