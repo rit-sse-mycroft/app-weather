@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
 gem 'barometer'
-gem 'srgs', '~> 1.0.1'
+gem 'srgs', '~> 1.1.0'

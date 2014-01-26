@@ -71,7 +71,7 @@ class Weather < Mycroft::Client
           @dependencies[capability][appId] = status
         end
       end
-    end    
+    end
   end
 end
 

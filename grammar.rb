@@ -22,13 +22,13 @@ module WeatherGrammar
     end
 
     public_rule 'weather' do
-      item 'Mycroft what is the weather'
+      item 'what is the weather'
       reference 'days'
       tag 'out.day=rules.days;'
     end
 
     public_rule 'sun' do
-      item 'Mycroft when is sun'
+      item 'when is sun'
       reference 'riseset'
       tag 'out.rise_or_set=rules.riseset;'
       reference 'days'
@@ -36,6 +36,7 @@ module WeatherGrammar
     end
 
     public_rule 'topLevel' do
+      item 'Mycroft'
       one_of do
         reference_item 'weather'
         reference_item 'sun'
