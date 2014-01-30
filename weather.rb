@@ -28,10 +28,10 @@ class Weather < Mycroft::Client
       unless grammar.nil?
         if grammar['grammar'] == 'weather'
           tags = grammar['tags']
-          if not tags['rise_or_set'].nil?
-            sunrise_sunset(weather, tags['day'], tags['rise_or_set'])
-          elsif tags['day'] == 'currently'
+          if tags['day'] == 'currently'
             current(weather)
+          elsif tags['rise_or_set'].nil?
+            sunrise_sunset(weather, tags['day'], tags['rise_or_set'])
           else
             today_tomorrow(weather, tags['day'])
           end
