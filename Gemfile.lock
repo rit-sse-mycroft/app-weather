@@ -1,6 +1,16 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    actionview (4.1.0.beta1)
+      activesupport (= 4.1.0.beta1)
+      builder (~> 3.1)
+      erubis (~> 2.7.0)
+    activesupport (4.1.0.beta1)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.1)
+      tzinfo (~> 1.1)
     addressable (2.3.5)
     atomic (1.1.14)
     axiom-types (0.0.5)
@@ -15,13 +25,18 @@ GEM
       tzinfo (>= 0.3.14)
       virtus (>= 1.0.0)
       yajl-ruby
+    builder (3.2.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     descendants_tracker (0.0.3)
     equalizer (0.0.9)
+    erubis (2.7.0)
     httpclient (2.3.4.1)
+    i18n (0.6.9)
     ice_nine (0.11.0)
+    json (1.8.1)
     mini_portile (0.5.2)
+    minitest (5.2.2)
     multi_json (1.8.4)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -46,5 +61,6 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  actionview
   barometer
   srgs (~> 1.1.1)

@@ -19,11 +19,19 @@
     <tag>out.day=rules.days;</tag>
   </rule>
   <rule id="sun" scope="public">
-    <item>when is sun</item>
+    <ruleref uri="#sunprefix"/>
+    <tag>out.prefix=rules.sunprefix</tag>
+    <item>sun</item>
     <ruleref uri="#riseset"/>
     <tag>out.rise_or_set=rules.riseset;</tag>
     <ruleref uri="#days"/>
     <tag>out.day=rules.days;</tag>
+  </rule>
+  <rule id="sunprefix" scope="private">
+    <one-of>
+      <item>when is</item>
+      <item>how long until</item>
+    </one-of>
   </rule>
   <rule id="topLevel" scope="public">
     <item>Mycroft</item>

@@ -1,6 +1,9 @@
 require 'barometer'
+require 'action_view'
 
 module WeatherModule
+
+  include ActionView::Helpers::DateHelpers
 
   def current(weather)
     current = weather.current
@@ -21,6 +24,13 @@ module WeatherModule
     time = weather.send(day.to_sym).sun.send(rise_or_set.to_sym).localtime
     link = Time.now > time ? 'was' : 'is'
     send_weather("#{day}, sun#{rise_or_set} #{link} at #{time.strftime('%I:%M %p')}")
+  end
+
+  def until_sunrise_sunset(weather, day, rise_or_set)
+    time = weather.send(day.to_sym).sun.send(rise_or_set.to_sym).localtime
+    link = Time.now > time ? ['was', 'ago'] : ['is in', '']
+    time = distance_of_time_in_words_to_now(time)
+    send_weather("#{day}, sunr#{rise_or_set} #{link[0]} #{time} #{link[1]}")
   end
 
   def send_weather(text)

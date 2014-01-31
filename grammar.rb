@@ -28,11 +28,20 @@ module WeatherGrammar
     end
 
     public_rule 'sun' do
-      item 'when is sun'
+      reference '#sunprefix'
+      tag 'out.prefix=rules.sunprefix'
+      item 'sun'
       reference '#riseset'
       tag 'out.rise_or_set=rules.riseset;'
       reference '#days'
       tag 'out.day=rules.days;'
+    end
+
+    private_rule 'sunprefix' do
+      one_of do
+        item 'when is'
+        item 'how long until'
+      end
     end
 
     public_rule 'topLevel' do
