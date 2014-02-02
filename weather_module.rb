@@ -3,7 +3,7 @@ require 'action_view'
 
 module WeatherModule
 
-  include ActionView::Helpers::DateHelpers
+  include ActionView::Helpers::DateHelper
 
   def current(weather)
     current = weather.current
