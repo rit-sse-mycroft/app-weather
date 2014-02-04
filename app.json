@@ -10,7 +10,6 @@
   "description": "Tells us the weather",
   "dependencies": {
     "stt": "0.0.1",
-    "tts": "0.0.1",
-    "logger": "1.0.0"
+    "tts": "0.0.1"
   }
 }
