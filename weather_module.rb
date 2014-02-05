@@ -30,7 +30,7 @@ module WeatherModule
     time = weather.send(day.to_sym).sun.send(rise_or_set.to_sym).localtime
     link = Time.now > time ? ['was', 'ago'] : ['is in', '']
     time = distance_of_time_in_words_to_now(time)
-    send_weather("#{day}, sunr#{rise_or_set} #{link[0]} #{time} #{link[1]}")
+    send_weather("#{day}, sun#{rise_or_set} #{link[0]} #{time} #{link[1]}")
   end
 
   def send_weather(text)
