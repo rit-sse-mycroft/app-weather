@@ -55,7 +55,7 @@ class Weather < Mycroft::Client
     end
   end
 
-  on 'end' do
+  on 'CONNECTION_CLOSED' do
     query('stt', 'unload_grammar', {grammar: 'weather'})
   end
 end
