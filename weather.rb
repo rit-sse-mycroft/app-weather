@@ -60,4 +60,4 @@ class Weather < Mycroft::Client
   end
 end
 
-Mycroft.start(Weather)
+Mycroft.start(Weather, ARGV[0], ARGV[1].to_i)
