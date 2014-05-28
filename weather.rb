@@ -58,8 +58,6 @@ class Weather < Mycroft::Client
   on 'CONNECTION_CLOSED' do
     query('stt', 'unload_grammar', {grammar: 'weather'})
   end
-
 end
 
-
-Mycroft.start(Weather, ARGV[1], ARGV[2].to_i)
+Mycroft.start(Weather, ARGV[0], ARGV[1].to_i)
